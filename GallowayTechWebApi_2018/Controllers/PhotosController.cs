@@ -61,19 +61,20 @@ namespace GallowayTechWebApi_2018.Controllers
         //    return Ok(photos);
         //}
 
+        //This will throw an error right now as you need to specify a PhotoId and size
         // GET: api/Photos/5
-        [Route("api/Photos/{id:int}")]
-        [ResponseType(typeof(Photos))]
-        public async Task<IHttpActionResult> GetPhotos(int id)
-        {
-            Photos photos = await db.Photos.FindAsync(id);
-            if (photos == null)
-            {
-                return NotFound();
-            }
+        //[Route("api/Photos/{id:int}")]
+        //[ResponseType(typeof(Photos))]
+        //public async Task<IHttpActionResult> GetPhotos(int id)
+        //{
+        //    Photos photos = await db.Photos.FindAsync(id);
+        //    if (photos == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            return Ok(photos);
-        }
+        //    return Ok(photos);
+        //}
 
         // PUT: api/Photos/5
         [ResponseType(typeof(void))]

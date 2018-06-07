@@ -17,7 +17,9 @@ GO
 
 CREATE TABLE [dbo].[Albums](
 	[AlbumID] [int] IDENTITY(1,1) NOT NULL,
+	[AlbumName] [varchar](255) NOT NULL,
 	[Caption] [nvarchar](50) NOT NULL,
+	[SearchText] [varchar](max) NULL,
 	[IsPublic] [bit] NOT NULL,
 	[DateCreated] [datetime] NOT NULL,
 	[DateUpdated] [datetime] NOT NULL,
