@@ -21,27 +21,41 @@ namespace GallowayTechWebApi_2018.Controllers
         private PhotoAlbumContext db = new PhotoAlbumContext();
 
         // GET: api/Photos
-        public IQueryable<Photos> GetPhotos()
+        public IQueryable<Photo> GetPhotos()
         {
             return db.Photos;
         }
 
         [Route("api/Photos/{size}")]
-        public IQueryable<Photos> GetPhotos(string size)
+        public IQueryable<Photo> GetPhotos(string size)
         {
             return db.Photos.Where(p => p.Size == size);
         }
 
         [Route("api/Photos/{id:int}/size/{size}")]
-        public IQueryable<Photos> GetPhotos(int id, string size)
+        public IQueryable<Photo> GetPhotos(int id, string size)
         {
             return db.Photos.Where(p => p.PhotoID == id && p.Size == size);
         }
         
         [Route("api/Album/{id:int}")]
-        public IQueryable<Photos> GetAlbumPhotos(int id)
+        public IQueryable<Photo> GetAlbumPhotos(int id)
         {
             return db.Photos.Where(p => p.AlbumID == id && p.Size == "Full");
+        }
+
+        [Route("api/Album/{id:int}/size/{size}")]
+        public Album GetAlbumPhotos(int id, string size)
+        {
+            //db.Configuration.ProxyCreationEnabled = false;
+            var album = db.Albums
+                .Where(a => a.AlbumID == id)
+                //.Include(p => p.Photos)
+                .FirstOrDefault();
+
+            album.Photos = db.Photos.Where(p => p.Size == size & p.AlbumID == id).ToList();
+
+            return album;
         }
 
         //// GET: api/Photos/5/size/Thumb
@@ -78,7 +92,7 @@ namespace GallowayTechWebApi_2018.Controllers
 
         // PUT: api/Photos/5
         [ResponseType(typeof(void))]
-        public async Task<IHttpActionResult> PutPhotos(int id, Photos photos)
+        public async Task<IHttpActionResult> PutPhotos(int id, Photo photos)
         {
             if (!ModelState.IsValid)
             {
@@ -112,8 +126,8 @@ namespace GallowayTechWebApi_2018.Controllers
         }
 
         // POST: api/Photos
-        [ResponseType(typeof(Photos))]
-        public async Task<IHttpActionResult> PostPhotos(Photos photos)
+        [ResponseType(typeof(Photo))]
+        public async Task<IHttpActionResult> PostPhotos(Photo photos)
         {
             if (!ModelState.IsValid)
             {
@@ -127,10 +141,10 @@ namespace GallowayTechWebApi_2018.Controllers
         }
 
         // DELETE: api/Photos/5
-        [ResponseType(typeof(Photos))]
+        [ResponseType(typeof(Photo))]
         public async Task<IHttpActionResult> DeletePhotos(int id)
         {
-            Photos photos = await db.Photos.FindAsync(id);
+            Photo photos = await db.Photos.FindAsync(id);
             if (photos == null)
             {
                 return NotFound();
