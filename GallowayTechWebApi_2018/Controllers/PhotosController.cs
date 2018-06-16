@@ -16,6 +16,7 @@ namespace GallowayTechWebApi_2018.Controllers
 
     //https://docs.microsoft.com/en-us/aspnet/web-api/overview/web-api-routing-and-actions/attribute-routing-in-web-api-2
 
+    [Authorize]
     public class PhotosController : ApiController
     {
         private PhotoAlbumContext db = new PhotoAlbumContext();
