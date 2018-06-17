@@ -9,17 +9,20 @@ using GallowayTechWebApi_2018.Models;
 namespace GallowayTechWebApi_2018.Controllers
 {
     //MVC Controller similar to API Controller except MVC inherits Controller while API inherits ApiController
+    [Authorize]
     public class SiteContentController : ApiController
     {
         private SiteContentContext db = new SiteContentContext();
 
         // GET: api/SiteContent
+        [AllowAnonymous]
         public IQueryable<SiteContent> GetSiteContent()
         {
             return db.SiteContent;
         }
 
         // GET: api/SiteContent/5
+        [AllowAnonymous]
         [ResponseType(typeof(SiteContent))]
         public IHttpActionResult GetSiteContent(int id)
         {

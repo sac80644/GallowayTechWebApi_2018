@@ -22,30 +22,36 @@ namespace GallowayTechWebApi_2018.Controllers
         private PhotoAlbumContext db = new PhotoAlbumContext();
 
         // GET: api/Photos
+        [AllowAnonymous]
         public IQueryable<Photo> GetPhotos()
         {
             return db.Photos;
         }
 
         [Route("api/Photos/{size}")]
+        [HttpGet]
+        [AllowAnonymous]
         public IQueryable<Photo> GetPhotos(string size)
         {
             return db.Photos.Where(p => p.Size == size);
         }
 
         [Route("api/Photos/{id:int}/size/{size}")]
+        [AllowAnonymous]
         public IQueryable<Photo> GetPhotos(int id, string size)
         {
             return db.Photos.Where(p => p.PhotoID == id && p.Size == size);
         }
-        
+
         [Route("api/Album/{id:int}")]
+        [AllowAnonymous]
         public IQueryable<Photo> GetAlbumPhotos(int id)
         {
             return db.Photos.Where(p => p.AlbumID == id && p.Size == "Full");
         }
 
         [Route("api/Album/{id:int}/size/{size}")]
+        [AllowAnonymous]
         public Album GetAlbumPhotos(int id, string size)
         {
             //db.Configuration.ProxyCreationEnabled = false;
@@ -76,36 +82,25 @@ namespace GallowayTechWebApi_2018.Controllers
         //    return Ok(photos);
         //}
 
-        //This will throw an error right now as you need to specify a PhotoId and size
-        // GET: api/Photos/5
-        //[Route("api/Photos/{id:int}")]
-        //[ResponseType(typeof(Photos))]
-        //public async Task<IHttpActionResult> GetPhotos(int id)
-        //{
-        //    Photos photos = await db.Photos.FindAsync(id);
-        //    if (photos == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    return Ok(photos);
-        //}
-
         // PUT: api/Photos/5
+        [Route("api/Photos/{id:int}")]
+        [HttpPut]
         [ResponseType(typeof(void))]
-        public async Task<IHttpActionResult> PutPhotos(int id, Photo photos)
+        public async Task<IHttpActionResult> PutPhotos(int id, Photo photo)
         {
+            return StatusCode(HttpStatusCode.NotImplemented);
+
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != photos.PhotoID)
+            if (id != photo.PhotoID)
             {
                 return BadRequest();
             }
 
-            db.Entry(photos).State = EntityState.Modified;
+            db.Entry(photo).State = EntityState.Modified;
 
             try
             {
@@ -130,6 +125,8 @@ namespace GallowayTechWebApi_2018.Controllers
         [ResponseType(typeof(Photo))]
         public async Task<IHttpActionResult> PostPhotos(Photo photos)
         {
+            return StatusCode(HttpStatusCode.NotImplemented);
+
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -142,9 +139,12 @@ namespace GallowayTechWebApi_2018.Controllers
         }
 
         // DELETE: api/Photos/5
+        [Route("api/Photos/{id:int}")]
         [ResponseType(typeof(Photo))]
         public async Task<IHttpActionResult> DeletePhotos(int id)
         {
+            return StatusCode(HttpStatusCode.NotImplemented);
+
             Photo photos = await db.Photos.FindAsync(id);
             if (photos == null)
             {

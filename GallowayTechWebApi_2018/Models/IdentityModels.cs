@@ -21,7 +21,7 @@ namespace GallowayTechWebApi_2018.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+            : base("Name=ApplicationDbContext", throwIfV1Schema: false)
         {
         }
 
