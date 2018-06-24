@@ -6,7 +6,6 @@ using System.Security.Cryptography;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
-using System.Web.Http.ModelBinding;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
@@ -20,7 +19,7 @@ using GallowayTechWebApi_2018.Results;
 namespace GallowayTechWebApi_2018.Controllers
 {
     [Authorize]
-    [RoutePrefix("api/Account")]
+    [RoutePrefix("api/RingBearer")]
     public class AccountController : ApiController
     {
         private const string LocalLoginProvider = "Local";
