@@ -261,3 +261,4 @@ __pycache__/
 *.pyc
 /GallowayTechWebApi_2018/DoNotCheckIn.txt
 /GallowayTechWebApi_2018/Album.xml
+/GallowayTechWebApi_2018/Connections.config
