@@ -43,6 +43,27 @@ namespace GallowayTechWebApi_2018.Controllers
             return db.Photos.Where(p => p.PhotoID == id && p.Size == size);
         }
 
+        [Route("api/Albums")]
+        [AllowAnonymous]
+        public IQueryable<Album> GetAlbums()
+        {
+            var albums = db.Albums.Include("Photos");
+            return albums;
+        }
+
+        [Route("api/Albums/size/{size}")]
+        [AllowAnonymous]
+        public IQueryable<Album> GetAlbums(string size)
+        {
+            var albums = db.Albums;
+            foreach (var album in albums)
+            {
+                album.Photos = db.Photos.Where(p => p.AlbumID == album.AlbumID && p.Size == size).ToList();
+            }
+
+            return albums;
+        }
+
         [Route("api/Album/{id:int}")]
         [AllowAnonymous]
         public IQueryable<Photo> GetAlbumPhotos(int id)
