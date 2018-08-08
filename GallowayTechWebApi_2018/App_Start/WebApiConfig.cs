@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace GallowayTechWebApi_2018
 {
@@ -9,7 +10,12 @@ namespace GallowayTechWebApi_2018
     {
         public static void Register(HttpConfiguration config)
         {
-            // Web API configuration and services
+
+#if DEBUG
+            // Cross Origin Requests - site wide
+            var cors = new EnableCorsAttribute("http://localhost:7777", "*", "*");
+            config.EnableCors(cors);
+#endif
 
             // Web API routes
             config.MapHttpAttributeRoutes();
