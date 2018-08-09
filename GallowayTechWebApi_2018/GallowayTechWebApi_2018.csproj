@@ -243,11 +243,19 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Album.xml" />
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="DoNotCheckIn.txt" />
+    <Content Include="Database\DDL\CreateTableAlbums.sql" />
+    <Content Include="Database\DDL\CreateTableAspNetRoles.sql" />
+    <Content Include="Database\DDL\CreateTableAspNetUserClaims.sql" />
+    <Content Include="Database\DDL\CreateTableAspNetUserLogins.sql" />
+    <Content Include="Database\DDL\CreateTableAspNetUserRoles.sql" />
+    <Content Include="Database\DDL\CreateTableAspNetUsers.sql" />
+    <Content Include="Database\DDL\CreateTablePhotos.sql" />
+    <Content Include="Database\DDL\CreateTableSiteContent.sql" />
+    <Content Include="Database\DML\AlbumsInsertScript.sql" />
+    <Content Include="Database\DML\PhotosInsertScript.sql" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -276,6 +284,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Connections.config" />
+    <Content Include="Database\DML\photo_export.csv" />
     <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
