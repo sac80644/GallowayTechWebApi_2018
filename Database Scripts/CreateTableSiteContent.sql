@@ -2,7 +2,7 @@ USE [GallowayTechDB]
 GO
 
 /****** Object:  Table [GallowayTechWebApi].[SiteContent]    Script Date: 2/11/2018 6:27:39 PM ******/
-DROP TABLE [GallowayTechWebApi].[SiteContent]
+DROP TABLE [dbo].[SiteContent]
 GO
 
 /****** Object:  Table [GallowayTechWebApi].[SiteContent]    Script Date: 2/11/2018 6:27:39 PM ******/
@@ -15,7 +15,7 @@ GO
 SET ANSI_PADDING ON
 GO
 
-CREATE TABLE [GallowayTechWebApi].[SiteContent](
+CREATE TABLE [dbo].[SiteContent](
 	[ID] [int] IDENTITY(1,1) NOT NULL,
 	[Content] [varchar](100) NOT NULL,
 	[DateCreated] [datetime] NOT NULL,
@@ -30,5 +30,3 @@ GO
 
 SET ANSI_PADDING OFF
 GO
-
-
