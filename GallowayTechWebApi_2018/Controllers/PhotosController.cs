@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
-using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
@@ -41,49 +37,6 @@ namespace GallowayTechWebApi_2018.Controllers
         public IQueryable<Photo> GetPhotos(int id, string size)
         {
             return db.Photos.Where(p => p.PhotoID == id && p.Size == size);
-        }
-
-        [Route("api/Albums")]
-        [AllowAnonymous]
-        public IQueryable<Album> GetAlbums()
-        {
-            var albums = db.Albums.Include("Photos");
-            return albums;
-        }
-
-        [Route("api/Albums/size/{size}")]
-        [AllowAnonymous]
-        public IQueryable<Album> GetAlbums(string size)
-        {
-            var albums = db.Albums;
-            foreach (var album in albums)
-            {
-                album.Photos = db.Photos.Where(p => p.AlbumID == album.AlbumID && p.Size == size).ToList();
-            }
-
-            return albums;
-        }
-
-        [Route("api/Album/{id:int}")]
-        [AllowAnonymous]
-        public IQueryable<Photo> GetAlbumPhotos(int id)
-        {
-            return db.Photos.Where(p => p.AlbumID == id && p.Size == "Full");
-        }
-
-        [Route("api/Album/{id:int}/size/{size}")]
-        [AllowAnonymous]
-        public Album GetAlbumPhotos(int id, string size)
-        {
-            //db.Configuration.ProxyCreationEnabled = false;
-            var album = db.Albums
-                .Where(a => a.AlbumID == id)
-                //.Include(p => p.Photos)
-                .FirstOrDefault();
-
-            album.Photos = db.Photos.Where(p => p.Size == size & p.AlbumID == id).ToList();
-
-            return album;
         }
 
         //// GET: api/Photos/5/size/Thumb
